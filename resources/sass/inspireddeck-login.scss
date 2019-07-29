@@ -1,0 +1,128 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: $white;
+  background-color: $brand_dark_darkest;
+}
+
+.form-control:focus {
+  color: $brand_blue_darkest;
+  border-color: $brand_blue_darkest;
+  background-color: $white;
+  outline: 0;
+  border-left: 0;
+  box-shadow: none;
+}
+
+input:-internal-autofill-selected {
+  background-color: $white !important;
+  background-image: none !important;
+  color: $brand_blue_darkest !important;
+}
+
+.login-logo {
+  fill: $brand_blue;
+}
+
+.alert ul {
+  font-weight: 600;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-control {
+  padding: 20px 8px;
+  border-radius: 2px;
+  border-bottom: 4px solid $brand_blue;
+  color: $brand_blue_darkest;
+}
+.input-group {
+  input {
+    border-left: 0;
+    font-weight: 600;
+    color: $brand_blue_darker;
+  }
+}
+.input-group-text {
+  min-width: 40px;
+  border-radius: 2px;
+  background: white;
+  border-bottom: 4px solid $brand_blue;
+  svg {
+    color: $brand_blue;
+  }
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $brand_blue_lighter !important;
+  opacity: 1 !important; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $brand_blue_lighter !important;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $brand_blue_lighter !important;
+}
+label.input-group-text.is-invalid {
+  border: 1px solid $red;
+  border-bottom: 4px solid $red;
+  svg {
+    color: $red;
+  }
+}
+
+.alert-danger {
+  color: $brand_blue_darkest;
+  background-color: $white;
+  border-color: $brand_blue_lightest;
+}
+
+.text-muted {
+  color: $gray-400 !important;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}

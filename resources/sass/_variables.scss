@@ -1,0 +1,92 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Brand Primary
+// As hex codes */
+$color-primary-0: #3D9DFA;	// Main Primary color */
+$color-primary-1: #92C7FB;
+$color-primary-2: #65B1FA;
+$color-primary-3: #1286F7;
+$color-primary-4: #057BED;
+// As RGBa codes */
+$rgba-primary-0: rgba( 61,157,250,1);	// Main Primary color */
+$rgba-primary-1: rgba(146,199,251,1);
+$rgba-primary-2: rgba(101,177,250,1);
+$rgba-primary-3: rgba( 18,134,247,1);
+$rgba-primary-4: rgba(  5,123,237,1);
+
+// Backgrounds
+// As hex codes */
+$color-dark-0: #2D2B42;	// Main Primary color */
+$color-dark-1: #666382;
+$color-dark-2: #4A4766;
+$color-dark-3: #201D3C;
+$color-dark-4: #12102D;
+// As RGBa codes */
+$rgba-dark-0: rgba( 45, 43, 66,1);	// Main Primary color */
+$rgba-dark-1: rgba(102, 99,130,1);
+$rgba-dark-2: rgba( 74, 71,102,1);
+$rgba-dark-3: rgba( 32, 29, 60,1);
+$rgba-dark-4: rgba( 18, 16, 45,1);
+
+// Text
+// As hex codes */
+$color-text-0: #666382;	// Main Primary color */
+$color-text-1: #B0AFBD;
+$color-text-2: #86849B;
+$color-text-3: #4C496C;
+$color-text-4: #312E4E;
+
+// As RGBa codes */
+$rgba-text-0: rgba(102, 99,130,1);	// Main Primary color */
+$rgba-text-1: rgba(176,175,189,1);
+$rgba-text-2: rgba(134,132,155,1);
+$rgba-text-3: rgba( 76, 73,108,1);
+$rgba-text-4: rgba( 49, 46, 78,1);
+
+// Primary Brand Colors
+$brand_blue_lightest: $color-primary-1;
+$brand_blue_lighter: $color-primary-2;
+$brand_blue: $color-primary-0;
+$brand_blue_darker: $color-primary-3;
+$brand_blue_darkest: $color-primary-4;
+// Background
+$brand_dark_lightest: $color-dark-1;
+$brand_dark_lighter: $color-dark-2;
+$brand_dark: $color-dark-0;
+$brand_dark_darker: $color-dark-3;
+$brand_dark_darkest: $color-dark-4;
+// Background
+$brand_text_lightest: $color-text-1;
+$brand_text_lighter: $color-text-2;
+$brand_text: $color-text-0;
+$brand_text_darker: $color-text-3;
+$brand_text_darkest: $color-text-4;
+
+$brand_green: #A2C61F;
+$brand_orange: #FF7D3E;
+$brand_purple: #983D8F;
+
+// Colors
+$blue: $brand_blue;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #FF7D3E;
+$yellow: #FFD23E;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+// Boostrap
+$primary: $brand_blue;
+$primary-dark: $brand_blue_darkest;
+
+// Greys
+$gray-100: #F4F6F8;

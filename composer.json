@@ -1,0 +1,67 @@
+{
+  "name": "mblsolutions/inspireddeck-support",
+  "description": "Support for Official Inspired Deck applications",
+  "keywords": ["inspired", "deck"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "MBL Solutions Ltd.",
+      "email": "support@mblsolutions.co.uk"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../inspireddeck-php",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "../inspireddeck-php-laravel",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "../inspireddeck-support",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-json": "*",
+    "illuminate/support": "~5.7.0|~5.8.0|~5.9.0",
+    "illuminate/http": "~5.7.0|~5.8.0|~5.9.0",
+    "mblsolutions/inspireddeck-php-laravel": "dev-master"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "MBLSolutions\\InspiredDeckSupport\\": "src/"
+    },
+    "files": [
+      "src/Support/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MBLSolutions\\InspiredDeckSupport\\Tests\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MBLSolutions\\InspiredDeckSupport\\InspiredDeckServiceProvider"
+      ]
+    }
+  }
+}
