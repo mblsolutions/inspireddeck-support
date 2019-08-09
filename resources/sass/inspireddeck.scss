@@ -18,6 +18,12 @@ body {
   padding-top: 56px;
 }
 
+.btn svg {
+  color: $brand_blue_lightest !important;
+  font-size: inherit !important;
+  margin-right: 4px;
+}
+
 [v-cloak] {
   display:none;
 }
@@ -741,4 +747,78 @@ a.navbar-brand {
 
 .text-dark {
   color: $brand_dark;
+}
+
+.autocomplete {
+  .list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: -1px;
+    background-color: $white;
+    border: 1px solid $gray-300;
+    font-weight: 600;
+    color: $brand_dark !important;
+  }
+  .list-group-item-action {
+    padding: 0.2rem 0.5rem;
+    color: $brand_blue !important;
+  }
+  a.list-group-item-action:hover {
+    background-color: $brand_blue_lightest;
+  }
+}
+
+#manage-report {
+  h3 {
+    color: $brand_blue_darkest;
+  }
+  h4, h5, h6 {
+    color: $brand_blue_lighter
+  }
+}
+
+#render-report {
+  tbody > tr > td:first-child {
+    font-weight: 600;
+    color: $brand_blue_darkest;
+  }
+  th {
+    color: $brand_blue_darkest;
+  }
+  .table {
+    color: $brand_dark_darkest;
+    font-size: 0.8rem;
+  }
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid $brand_blue;
+    border-top: 0;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: $gray-100;
+  }
+  .table-hover tbody tr:hover {
+    background-color: $gray-200;
+  }
+  .report-meta {
+    color: $brand_dark_lightest;
+    font-size: 0.7rem;
+  }
+  #report-parameters {
+    .table {
+      color: $brand_dark_lightest;
+    }
+    .parameter-title {
+      font-weight: 600;
+    }
+  }
+}
+
+.report-render {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }

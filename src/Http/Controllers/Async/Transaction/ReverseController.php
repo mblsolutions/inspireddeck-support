@@ -1,8 +1,8 @@
 <?php
 
-namespace  MBLSolutions\InspiredDeckSupport\Http\Controllers\Async\Transaction;
+namespace MBLSolutions\InspiredDeckSupport\Http\Controllers\Async\Transaction;
 
-use  MBLSolutions\InspiredDeckSupport\Http\Controllers\Async\AsyncController;
+use MBLSolutions\InspiredDeckSupport\Http\Controllers\Async\AsyncController;
 use Illuminate\Http\Request;
 use MBLSolutions\InspiredDeck\ReverseTransaction;
 
