@@ -14,7 +14,7 @@ Route::name('api.')->group(static function () {
 
     Route::get('report/connection', 'Report\ReportController@connections')->name('report.connection');
     Route::get('report/middleware', 'Report\ReportController@middleware')->name('report.middleware');
-    Route::get('report/select/type', 'Report\ReportController@selectType')->name('report.select.type');
+    Route::get('report/data/type', 'Report\ReportController@dataType')->name('report.data.type');
     Route::get('report/model', 'Report\ReportController@models')->name('report.model');
 
     Route::get('report', 'Report\ReportController@index')->name('report.index');

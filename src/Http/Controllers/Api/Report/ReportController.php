@@ -76,9 +76,9 @@ class ReportController
      *
      * @return array
      */
-    public function selectType(): array
+    public function dataType(): array
     {
-        return $this->report->selectType();
+        return $this->report->dataType();
     }
 
     /**
