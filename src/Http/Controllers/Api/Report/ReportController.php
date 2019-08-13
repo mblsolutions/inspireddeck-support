@@ -91,4 +91,18 @@ class ReportController
         return $this->report->connections();
     }
 
+    /**
+     * Get the report export link
+     *
+     * @param $id
+     * @param Request $request
+     * @return array
+     */
+    public function export($id, Request $request): array
+    {
+        return [
+            'signed_url' => 'http://google.com'
+        ];
+    }
+
 }

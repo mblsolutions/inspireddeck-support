@@ -20,6 +20,6 @@ Route::name('api.')->group(static function () {
     Route::get('report', 'Report\ReportController@index')->name('report.index');
     Route::get('report/{report}', 'Report\ReportController@show')->name('report.show');
     Route::post('report/{report}', 'Report\ReportController@render')->name('report.render');
-
+    Route::post('report/{report}/export', 'Report\ReportController@export')->name('report.export');
 
 });
