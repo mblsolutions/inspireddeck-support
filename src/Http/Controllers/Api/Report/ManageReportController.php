@@ -66,12 +66,13 @@ class ManageReportController
     /**
      * Test Report
      *
+     * @param $id
      * @param Request $request
      * @return mixed
      */
-    public function test(Request $request)
+    public function test($id, Request $request)
     {
-        return $this->report->test($request->toArray());
+        return $this->report->test($id, $request->toArray());
     }
 
     /**

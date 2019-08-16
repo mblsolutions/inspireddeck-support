@@ -92,6 +92,18 @@ class ReportController
     }
 
     /**
+     * Get the report Print link
+     *
+     * @param $id
+     * @param Request $request
+     * @return array
+     */
+    public function print($id, Request $request): array
+    {
+        return $this->report->print($id, $request->all());
+    }
+
+    /**
      * Get the report export link
      *
      * @param $id
@@ -100,9 +112,7 @@ class ReportController
      */
     public function export($id, Request $request): array
     {
-        return [
-            'signed_url' => 'http://google.com'
-        ];
+        return $this->report->export($id, $request->all());
     }
 
 }
