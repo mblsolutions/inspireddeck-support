@@ -97,13 +97,15 @@
             </div>
         </div>
         <div class="my-3 p-3 bg-white rounded shadow-sm" v-else>
-            <loading message="Loading Transactions"></loading>
+            <Loading message="Loading Transactions"></Loading>
         </div>
     </div>
 </template>
 
 <script>
     import {Code} from "../../app/product/Code";
+    import Loading from "../helpers/Loading";
+    import InfiniteLoading from 'vue-infinite-loading'
 
     export default {
         name: "TransactionHistory",
@@ -126,7 +128,8 @@
             }
         },
         components: {
-            'loading': require('../helpers/Loading').default,
+            Loading,
+            InfiniteLoading
         },
         methods: {
             /**

@@ -56,44 +56,74 @@
                 </span>
             </div>
 
-            <transaction-form v-model="code.data" :errors="code.error.errors"></transaction-form>
+            <Transaction v-model="code.data" :errors="code.error.errors"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="debit">Issue Code</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Issue Code</button>
         </div>
 
-        <loading message="Loading Issue Code" v-else></loading>
+        <Loading message="Loading Issue Code" v-else></Loading>
+
+        <transition name="fade">
+            <TransactionConfirmationModal
+                    @user-cancel-transaction="cancelTransaction"
+                    @user-confirm-transaction="issue"
+                    v-if="show_modal"
+            >
+                <table class="table table-sm table-dark">
+                    <tbody>
+                    <tr v-for="(data, key, index) in code.data">
+                        <th scope="row">{{ code.formatKey(key) }}</th>
+                        <td>{{ data ? data : '-' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </TransactionConfirmationModal>
+        </transition>
     </div>
 </template>
 
 <script>
     import {Code} from "../../app/product/Code";
+    import Loading from "../helpers/Loading";
+    import Transaction from "./Transaction";
+    import TransactionConfirmationModal from "./TransactionConfirmationModal";
 
     export default {
         name: "IssueCode",
         components: {
-            'loading': require('../helpers/Loading').default,
-            'transaction-form': require('./Transaction').default
+            Loading,
+            Transaction,
+            TransactionConfirmationModal
         },
         data() {
             return {
                 code: null,
                 date: null,
+                show_modal: false,
                 loaded: false
             }
         },
         methods: {
             /**
-             * Credit a Code
+             * Confirm Transaction
              */
-            debit() {
-                let vm = this;
+            showTransactionConfirmation() {
+                this.show_modal = true;
+            },
+            /**
+             * Cancel Transaction
+             */
+            cancelTransaction() {
+                this.show_modal = false;
+            },
+            /**
+             * Issue a Code
+             */
+            issue() {
+                this.show_modal = false;
 
-                vm.code.confirm().then(result => {
-                    if (result.value) {
-                        vm.code.issue().then(() => {
-                            window.location.href = '/transactions'
-                        });
-                    }
+                this.code.issue().then(() => {
+                    window.location.href = '/transactions'
                 });
             }
         },

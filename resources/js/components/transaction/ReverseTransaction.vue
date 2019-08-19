@@ -24,43 +24,73 @@
                 </span>
             </div>
 
-            <transaction-form v-model="code.data"></transaction-form>
+            <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="block">Reverse Transaction</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Reverse Transaction</button>
         </div>
 
-        <loading message="Loading Reverse Transaction" v-else></loading>
+        <Loading message="Loading Reverse Transaction" v-else></Loading>
+
+        <transition name="fade">
+            <TransactionConfirmationModal
+                    @user-cancel-transaction="cancelTransaction"
+                    @user-confirm-transaction="reverse"
+                    v-if="show_modal"
+            >
+                <table class="table table-sm table-dark">
+                    <tbody>
+                    <tr v-for="(data, key, index) in code.data">
+                        <th scope="row">{{ code.formatKey(key) }}</th>
+                        <td>{{ data ? data : '-' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </TransactionConfirmationModal>
+        </transition>
     </div>
 </template>
 
 <script>
     import {Code} from "../../app/product/Code";
+    import Loading from "../helpers/Loading";
+    import Transaction from "./Transaction";
+    import TransactionConfirmationModal from "./TransactionConfirmationModal";
 
     export default {
         name: "BlockCode",
         components: {
-            'loading': require('../helpers/Loading').default,
-            'transaction-form': require('./Transaction').default
+            Loading,
+            Transaction,
+            TransactionConfirmationModal
         },
         data() {
             return {
                 code: null,
+                show_modal: false,
                 loaded: false
             }
         },
         methods: {
             /**
-             * Bock a Code
+             * Confirm Transaction
              */
-            block() {
-                let vm = this;
+            showTransactionConfirmation() {
+                this.show_modal = true;
+            },
+            /**
+             * Cancel Transaction
+             */
+            cancelTransaction() {
+                this.show_modal = false;
+            },
+            /**
+             * Reverse a Code
+             */
+            reverse() {
+                this.show_modal = false;
 
-                vm.code.confirm().then(result => {
-                    if (result.value) {
-                        vm.code.reverse().then(() => {
-                            window.location.href = '/transactions'
-                        });
-                    }
+                this.code.reverse().then(() => {
+                    window.location.href = '/transactions'
                 });
             }
         },

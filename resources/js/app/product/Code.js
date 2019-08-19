@@ -352,4 +352,15 @@ export class Code extends Form {
 
         return decimals;
     }
+
+    /**
+     * Format Key
+     *
+     * @param key
+     * @return {string}
+     */
+    formatKey(key) {
+        return key.replace('_', ' ').replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});;
+    }
+
 }

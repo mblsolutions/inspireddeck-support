@@ -1,16 +1,31 @@
 <template>
 
-    <form :id="getElementId" :method="method" :action="action" enctype="multipart/form-data">
-        <slot></slot>
+    <div>
+        <form :id="getElementId" :method="method" :action="action" enctype="multipart/form-data">
+            <slot></slot>
 
-        <button type="submit" :class="button_class" @click.prevent="confirm()">
-            {{ button_name }}
-        </button>
-    </form>
+            <button type="submit" :class="button_class" @click.prevent="confirm()">
+                {{ button_name }}
+            </button>
+        </form>
+
+        <transition name="fade">
+            <Modal
+                    :id="getElementId" :title="title" v-if="show_modal"
+                    @close-inspireddeck-model="closeAction" @submit-inspireddeck-modal="confirmAction"
+            >
+                <template slot="modal_body">
+                    <p>{{ text }}</p>
+                </template>
+            </Modal>
+        </transition>
+    </div>
 
 </template>
 
 <script>
+    import Modal from "./Modal";
+
     export default {
         name: "ConfirmDialogue",
 
@@ -48,7 +63,14 @@
                 default: 'warning'
             }
         },
-
+        components: {
+            Modal
+        },
+        data() {
+            return {
+                show_modal: false
+            }
+        },
         computed: {
 
             /**
@@ -64,28 +86,24 @@
 
         methods: {
             /**
+             * Close Action
+             */
+            closeAction() {
+                this.show_modal = false;
+            },
+            /**
+             * Confirm Action
+             */
+            confirmAction() {
+                document.getElementById(this.getElementId).submit();
+            },
+            /**
              * Confirm Button Action
              *
              * @return void
              */
             confirm() {
-                let vm = this;
-
-                window.sweetAlert.fire({
-                    title: vm.title,
-                    text: vm.text,
-                    type: vm.type,
-                    showCancelButton: true,
-                    confirmButtonColor: '#17abcf',
-                    cancelButtonColor: '#e3342f',
-                    confirmButtonText: 'Confirm'
-                }).then(function (result) {
-
-                    if (result.value === true) {
-                        document.getElementById(vm.getElementId).submit();
-                    }
-
-                });
+                this.show_modal = true;
             }
 
         }

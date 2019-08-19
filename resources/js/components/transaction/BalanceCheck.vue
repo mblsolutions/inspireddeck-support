@@ -24,43 +24,73 @@
                 </span>
             </div>
 
-            <transaction-form v-model="code.data"></transaction-form>
+            <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="debit">Check Balance</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Check Balance</button>
         </div>
 
-        <loading message="Loading Balance Check" v-else></loading>
+        <Loading message="Loading Balance Check" v-else></Loading>
+
+        <transition name="fade">
+            <TransactionConfirmationModal
+                    @user-cancel-transaction="cancelTransaction"
+                    @user-confirm-transaction="balance"
+                    v-if="show_modal"
+            >
+                <table class="table table-sm table-dark">
+                    <tbody>
+                    <tr v-for="(data, key, index) in code.data">
+                        <th scope="row">{{ code.formatKey(key) }}</th>
+                        <td>{{ data ? data : '-' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </TransactionConfirmationModal>
+        </transition>
     </div>
 </template>
 
 <script>
     import {Code} from "../../app/product/Code";
+    import Loading from "../helpers/Loading";
+    import Transaction from "./Transaction";
+    import TransactionConfirmationModal from "./TransactionConfirmationModal";
 
     export default {
-        name: "DebitCode",
+        name: "BalanceCheck",
         components: {
-            'loading': require('../helpers/Loading').default,
-            'transaction-form': require('./Transaction').default
+            Loading,
+            Transaction,
+            TransactionConfirmationModal
         },
         data() {
             return {
                 code: null,
+                show_modal: false,
                 loaded: false
             }
         },
         methods: {
             /**
-             * Credit a Code
+             * Confirm Transaction
              */
-            debit() {
-                let vm = this;
+            showTransactionConfirmation() {
+                this.show_modal = true;
+            },
+            /**
+             * Cancel Transaction
+             */
+            cancelTransaction() {
+                this.show_modal = false;
+            },
+            /**
+             * Perform a Balance CHeck
+             */
+            balance() {
+                this.show_modal = false;
 
-                vm.code.confirm().then(result => {
-                    if (result.value) {
-                        vm.code.balance().then(() => {
-                            window.location.href = '/transactions'
-                        });
-                    }
+                this.code.balance().then(() => {
+                    window.location.href = '/transactions'
                 });
             }
         },

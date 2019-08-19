@@ -77,6 +77,8 @@
 </template>
 
 <script>
+    import Loading from "../helpers/Loading";
+
     export default {
         name: "Transaction",
         props: {
@@ -98,7 +100,7 @@
             }
         },
         components: {
-            'loading': require('../helpers/Loading').default,
+            Loading
         },
         data() {
             return {
