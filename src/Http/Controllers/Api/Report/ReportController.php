@@ -3,6 +3,7 @@
 namespace MBLSolutions\InspiredDeckSupport\Http\Controllers\Api\Report;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use MBLSolutions\InspiredDeck\Report;
 
 class ReportController
@@ -44,11 +45,18 @@ class ReportController
      *
      * @param $id
      * @param Request $request
-     * @return array
+     * @return mixed
      */
-    public function render($id, Request $request): array
+    public function render($id, Request $request)
     {
-        return $this->report->render($id, $request->toArray());
+        try {
+            return $this->report->render($id, $request->toArray());
+        } catch (\Exception $exception) {
+            return new Response([
+                'message' => $exception->getMessage(),
+                'response' => $exception->getResponse()
+            ], 422);
+        }
     }
 
     /**
