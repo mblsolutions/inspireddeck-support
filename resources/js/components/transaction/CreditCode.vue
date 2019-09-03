@@ -1,32 +1,33 @@
 <template>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="section-panel p-3">
         <div v-if="loaded">
-            <div class="alert alert-validation" v-if="code.hasErrors()">
-                <i class="fas fa-exclamation-triangle mr-2"></i> {{ code.getErrorMessage() }}
+            <div class="error-alert" v-if="code.hasErrors()">
+                <p class="align-middle font-bold text-base">
+                    <i class="material-icons text-sm">error</i> {{ code.getErrorMessage() }}
+                </p>
+                <ul class="text-sm mt-2" v-if="code.error.errors">
+                    <li v-for="error in code.error.errors">{{ error[0] }}</li>
+                </ul>
             </div>
 
+            <p class="mb-4 px-2 text-sm text-gray-500">
+                Add funds to the code.
+            </p>
+
             <div class="form-group">
-                <label for="amount">Credit Amount</label>
+                <label class="form-label" for="amount">Credit Amount</label>
+                <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('amount') }" id="amount" placeholder="Credit Amount" autocomplete="off" required autofocus v-model="code.data.amount">
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" :class="{ 'is-invalid': code.hasError('amount') }"><i class="fas fa-money-bill-wave-alt"></i></label>
-                    </div>
-                    <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('amount') }" id="amount" placeholder="Credit Amount" autocomplete="off" required autofocus v-model="code.data.amount">
-                </div>
-
-                <small id="amount_help" class="form-text text-muted">
+                <div id="amount_help" class="text-muted">
                     The amount to be credited to the code.
-                </small>
-
-                <span v-if="code.hasError('amount')" class="alert alert-validation-form-field">
-                    {{ code.getError('amount') }}
-                </span>
+                </div>
             </div>
 
             <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Credit Code</button>
+            <div class="form-group">
+                <button type="submit" class="brand-btn" @click.prevent="showTransactionConfirmation">Credit Code</button>
+            </div>
         </div>
 
         <Loading message="Loading Credit Code" v-else></Loading>

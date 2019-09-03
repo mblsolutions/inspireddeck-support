@@ -1,73 +1,47 @@
 <template>
     <div>
-        <div class="accordion" id="transaction_form" v-if="loaded">
+        <div class="my-5" id="transaction_form" v-if="loaded">
             <div class="card">
-                <div class="card-header" id="transaction_form_head" @click.prevent="toggleShow">
-                    <h6 class="font-weight-normal">
-                        <i class="fas fa-plus mr-2 text-icon-darker"></i> Transaction References
-                        <small class="text-muted">{{ showMessage }}</small>
+                <div id="transaction_form_head" @click.prevent="toggleShow">
+                    <h6 class="flex items-center mb-4 font-bold text-brand-blue-900">
+                        <i class="material-icons text-brand-blue-300 mr-2" v-if="hide">add</i>
+                        <i class="material-icons text-brand-blue-300 mr-2" v-else>clear</i>
+                        Transaction References
+                        <span class="text-muted ml-2">{{ showMessage }}</span>
                     </h6>
 
-                    <input type="hidden" name="reference" class="form-control" :class="{ 'is-invalid': hasError('reference') }" id="transaction_reference" placeholder="Transaction Reference" v-model="data.reference">
+                    <hr>
+
+                    <input type="hidden" name="reference" class="form-control" :class="{ 'form-control-error focus:border-brand-error-200': hasError('reference') }" id="transaction_reference" placeholder="Transaction Reference" v-model="data.reference">
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="transaction_form_head" data-parent="#transaction_form" v-if="!hide">
+                <div id="transaction_form_head_body" v-if="!hide">
+
+                    <p class="py-3 px-2 text-sm text-gray-500">
+                        References assigned to this transaction can be used for reporting and searching.
+                    </p>
+
                     <div class="form-group mt-2">
                         <div class="input-group">
-                            <label for="transaction_reference">Transaction Ref.</label>
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" :class="{ 'is-invalid': hasError('reference') }"><i class="fas fa-asterisk"></i></label>
-                                </div>
-                                <div class="form-control" readonly>{{ data.reference }}</div>
-                            </div>
+                            <label class="form-label" for="transaction_reference">Transaction Reference</label>
+                            <div class="form-control p-3" readonly>{{ data.reference }}</div>
                         </div>
-                        <span v-if="hasError('reference')" class="alert alert-validation-form-field">{{ getError('reference') }}</span>
                     </div>
 
-                    <div class="row form-group">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="transaction_external_ref">External Ref.</label>
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" :class="{ 'is-invalid': hasError('external_ref') }"><i class="fas fa-tag"></i></label>
-                                    </div>
-                                    <input type="text" name="external_ref" class="form-control" :class="{ 'is-invalid': hasError('external_ref') }" id="transaction_external_ref" placeholder="External Reference" v-model="data.external_ref">
-                                </div>
-                            </div>
-                            <span v-if="hasError('external_ref')" class="alert alert-validation-form-field">{{ getError('external_ref') }}</span>
+                    <div class="md:flex">
+                        <div class="form-group md:w-1/2">
+                            <label class="form-label" for="transaction_external_ref">External Reference</label>
+                            <input type="text" name="external_ref" class="form-control" :class="{ 'form-control-error focus:border-brand-error-200': hasError('external_ref') }" id="transaction_external_ref" placeholder="External Reference" v-model="data.external_ref">
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="transaction_origin_ref">Origin Ref.</label>
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" :class="{ 'is-invalid': hasError('origin_ref') }"><i class="fas fa-map-marker"></i></label>
-                                    </div>
-                                    <input type="text" name="origin_ref" class="form-control" :class="{ 'is-invalid': hasError('origin_ref') }" id="transaction_origin_ref" placeholder="Origin Reference" v-model="data.origin_ref">
-                                </div>
-                            </div>
-
-                            <span v-if="hasError('origin_ref')" class="alert alert-validation-form-field">{{ getError('origin_ref') }}</span>
+                        <div class="form-group md:w-1/2">
+                            <label class="form-label" for="transaction_origin_ref">Origin Reference</label>
+                            <input type="text" name="origin_ref" class="form-control" :class="{ 'form-control-error focus:border-brand-error-200': hasError('origin_ref') }" id="transaction_origin_ref" placeholder="Origin Reference" v-model="data.origin_ref">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="input-group">
-                            <label for="transaction_comment">Comment</label>
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" :class="{ 'is-invalid': hasError('comment') }"><i class="fas fa-quote-left"></i></label>
-                                </div>
-                                <input type="text" name="comment" class="form-control" :class="{ 'is-invalid': hasError('comment') }" id="transaction_comment" v-model="data.comment" v-on:blur="transactionDataUpdated">
-                            </div>
-                        </div>
-                        <span v-if="hasError('comment')" class="alert alert-validation-form-field">{{ getError('comment') }}</span>
+                        <label class="form-label" for="transaction_comment">Transaction Comment</label>
+                        <input type="text" name="comment" class="form-control" :class="{ 'form-control-error focus:border-brand-error-200': hasError('comment') }" id="transaction_comment" v-model="data.comment" v-on:blur="transactionDataUpdated">
                     </div>
                 </div>
             </div>

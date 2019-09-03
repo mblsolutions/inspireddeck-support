@@ -1,32 +1,34 @@
 <template>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="section-panel p-3">
         <div v-if="loaded">
-            <div class="alert alert-validation" v-if="code.hasErrors()">
-                <i class="fas fa-exclamation-triangle mr-2"></i> {{ code.getErrorMessage() }}
+            <div class="error-alert" v-if="code.hasErrors()">
+                <p class="align-middle font-bold text-base">
+                    <i class="material-icons text-sm">error</i> {{ code.getErrorMessage() }}
+                </p>
+                <ul class="text-sm mt-2" v-if="code.error.errors">
+                    <li v-for="error in code.error.errors">{{ error[0] }}</li>
+                </ul>
             </div>
 
+            <p class="mb-4 px-2 text-sm text-gray-500">
+                Perform a simulated balance check on the code. The PIN field is optional and is only
+                present for testing purposes.
+            </p>
+
             <div class="form-group">
-                <label for="pin">PIN</label>
+                <label class="form-label">PIN</label>
+                <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('pin') }" placeholder="PIN" autocomplete="off" required autofocus v-model="code.data.pin">
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" :class="{ 'is-invalid': code.hasError('pin') }"><i class="fas fa-key"></i></label>
-                    </div>
-                    <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('pin') }" id="pin" placeholder="PIN" autocomplete="off" required autofocus v-model="code.data.pin">
-                </div>
-
-                <small id="pin_help" class="form-text text-muted">
-                    <span>Optional:</span> The codes PIN.
+                <small id="pin_help" class="text-muted">
+                    Optional: The codes PIN
                 </small>
-
-                <span v-if="code.hasError('amount')" class="alert alert-validation">
-                    {{ code.getError('amount') }}
-                </span>
             </div>
 
             <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Check Balance</button>
+            <div class="form-group">
+                <button type="submit" class="brand-btn" @click.prevent="showTransactionConfirmation">Check Balance</button>
+            </div>
         </div>
 
         <Loading message="Loading Balance Check" v-else></Loading>

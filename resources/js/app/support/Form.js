@@ -12,7 +12,7 @@ export class Form {
         this.data = data;
 
         this.response = null;
-        this.error = new Error;
+        this.error = this.resetError();
     }
 
     /**
@@ -62,6 +62,9 @@ export class Form {
      * @return {null|boolean}
      */
     hasErrors() {
+        if (!this.error) {
+            this.resetError();
+        }
         return this.error.message || this.error.errors;
     }
 
@@ -120,6 +123,13 @@ export class Form {
         }
 
         return date;
+    }
+
+    /**
+     * Reset Error
+     */
+    resetError() {
+        this.error = new Error;
     }
 
 }

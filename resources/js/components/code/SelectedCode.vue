@@ -1,44 +1,41 @@
 <template>
     <div>
         <div v-if="loaded">
-            <div v-if="code && selectedCode">
-                <div id="selected-code-info" class="my-3 pt-3 pb-0 px-3 bg-white rounded shadow-sm" @click.prevent="toggleShowInfo">
-                    <div class="index-row media selected-code-header pb-3">
-                        <div class="fa-3x">
-                            <i class="fas fa-credit-card"></i>
+            <div class="cursor-pointer" v-if="code && selectedCode">
+
+                <div class="section-panel p-3 border-t-4 text-brand-blue-500 border-brand-blue-500" @click.prevent="toggleShowInfo">
+                    <div class="flex py-2">
+                        <div class="flex flex-shrink-0 items-center mr-4">
+                            <i class="material-icons text-brand-blue-500 text-4xl">credit_card</i>
                         </div>
-                        <div class="row media-body ml-3 py-3 lh-125">
-                            <div class="col-6 col-lg-4 text-left">
-                                <h5 class="text-uppercase" :class="'selected-code-status ' + selectedCode.status">
-                                    {{ selectedCode.status }}
-                                </h5>
-                                <small>{{ customer }}</small>
-                            </div>
-                            <div class="d-none d-lg-block col-lg-4 text-center">
-                                <h3>{{ selectedCode.serial }}</h3>
-                                <span>{{ selectedCode.display }}</span>
-                            </div>
-                            <div class="col-6 col-lg-4 text-right">
-                                <h4>{{ balance }} <small class="text-primary-lighter">{{ selectedCode.currency_code }}</small></h4>
-                                <small class="text-uppercase">{{ selectedCode.type }}</small>
-                            </div>
+                        <div class="w-6/12 text-left md:w-4/12">
+                            <h5 class="uppercase font-bold" :class="{ 'text-brand-error-500': isInvalid, 'text-teal-500': isActive, 'text-brand-blue-500': isInactive }">
+                                {{ selectedCode.status }}
+                            </h5>
+                            <p class="text-muted">{{ customer }}</p>
+                        </div>
+                        <div class="w-4/12 hidden md:block text-center">
+                            <h3>{{ selectedCode.serial }}</h3>
+                            <p class="text-muted">{{ selectedCode.display }}</p>
+                        </div>
+                        <div class="w-6/12 text-right md:w-4/12 md:mr-8">
+                            <h4 class="text-xl font-bold">
+                                {{ balance }}
+                                <span class="font-light text-sm text-brand-blue-300">{{ selectedCode.currency_code }}</span>
+                            </h4>
+                            <p class="text-muted uppercase">{{ selectedCode.type }}</p>
                         </div>
                     </div>
-                    <transition name="slide">
-                        <div class="index-row media selected-code-body" v-if="show">
-                            <div class="fa-3x">
-                                <i class="fas fa-credit-card"></i>
+
+                    <transition name="cardinfoslide">
+                        <div class="hidden md:flex py-2 text-brand-blue-300" v-if="show">
+                            <div class="w-3/6 text-left ml-12">
+                                <h6 class="text-primary mb-0">{{ selectedCode.asset }}</h6>
+                                <p class="text-muted">{{ selectedCode.sku }}</p>
                             </div>
-                            <div class="row ml-3 media-body">
-                                <div class="col-6 col-lg-4 text-left">
-                                    <h6 class="text-primary mb-0">{{ selectedCode.asset }}</h6>
-                                    <small>{{ selectedCode.sku }}</small>
-                                </div>
-                                <div class="d-none d-lg-block col-lg-4 text-center"></div>
-                                <div class="col-6 col-lg-4 text-right">
-                                    <h6 class="text-primary mb-0">Last Updated</h6>
-                                    <small>{{ lastUpdated }}</small>
-                                </div>
+                            <div class="w-3/6 text-right mr-8">
+                                <h6 class="text-primary mb-0">Last Updated</h6>
+                                <p class="text-muted">{{ lastUpdated }}</p>
                             </div>
                         </div>
                     </transition>
@@ -49,16 +46,18 @@
                 <slot name="transaction"></slot>
             </div>
             <div v-else>
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <no-selected-code></no-selected-code>
+                <div class="section-panel p-3">
+                    <NoSelectedCode></NoSelectedCode>
                 </div>
             </div>
         </div>
-        <loading message="Inspired Deck Loading" v-else></loading>
+        <Loading message="Inspired Deck Loading" v-else></Loading>
     </div>
 </template>
 
 <script>
+    import Loading from "../helpers/Loading";
+    import NoSelectedCode from "./NoSelectedCode";
     import {Code} from "../../app/product/Code";
 
     export default {
@@ -73,8 +72,8 @@
         },
         name: "SelectedCode",
         components: {
-            'loading': require('../helpers/Loading').default,
-            'no-selected-code': require('../code/NoSelectedCode').default
+            Loading,
+            NoSelectedCode
         },
         data() {
             return {
@@ -111,6 +110,36 @@
              */
             lastUpdated() {
                 return window.moment(this.selectedCode.updated).format("dddd, MMMM Do YYYY, h:mm:ss a")
+            },
+            /**
+             * Check if Code is Invalid
+             *
+             * @return {boolean}
+             */
+            isInvalid() {
+                let status = this.selectedCode.status;
+
+                return status === 'expired' || status === 'blocked' || status === 'redeemed';
+            },
+            /**
+             * Check if Code is Active
+             *
+             * @return {boolean}
+             */
+            isActive() {
+                let status = this.selectedCode.status;
+
+                return status === 'active';
+            },
+            /**
+             * Check if Code is Inactive
+             *
+             * @return {boolean}
+             */
+            isInactive() {
+                let status = this.selectedCode.status;
+
+                return status === 'inactive';
             }
         },
         methods: {
@@ -149,34 +178,38 @@
 </script>
 
 <style scoped>
-    .slide-enter-active {
-        -moz-transition-duration: 0.3s;
-        -webkit-transition-duration: 0.3s;
-        -o-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+    ul {
+        cursor: pointer;
+    }
+
+    .cardinfoslide-enter-active {
+        -moz-transition-duration: 0.05s;
+        -webkit-transition-duration: 0.05s;
+        -o-transition-duration: 0.05s;
+        transition-duration: 0.05s;
         -moz-transition-timing-function: ease-in;
         -webkit-transition-timing-function: ease-in;
         -o-transition-timing-function: ease-in;
         transition-timing-function: ease-in;
     }
 
-    .slide-leave-active {
-        -moz-transition-duration: 0.3s;
-        -webkit-transition-duration: 0.3s;
-        -o-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+    .cardinfoslide-leave-active {
+        -moz-transition-duration: 0.05s;
+        -webkit-transition-duration: 0.05s;
+        -o-transition-duration: 0.05s;
+        transition-duration: 0.05s;
         -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
         -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
         -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
         transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     }
 
-    .slide-enter-to, .slide-leave {
-        max-height: 100px;
+    .cardinfoslide-enter-to, .cardinfoslide-leave {
+        max-height: 70px;
         overflow: hidden;
     }
 
-    .slide-enter, .slide-leave-to {
+    .cardinfoslide-enter, .cardinfoslide-leave-to {
         overflow: hidden;
         max-height: 0;
     }

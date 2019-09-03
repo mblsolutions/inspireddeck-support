@@ -2,10 +2,10 @@
 
     <div>
         <span v-if="error">
-            <datetime v-model="date" input-class="form-control placeholder-brand-blue-300 form-control-error focus:border-brand-error-200" :title="title" :hidden-name="name" :placeholder="title" type="datetime"></datetime>
+            <datetime v-model="date" input-class="form-control form-control-error focus:border-brand-error-200" :title="title" :hidden-name="name" :placeholder="title" type="datetime"></datetime>
         </span>
         <span v-else>
-            <datetime v-model="date" input-class="form-control placeholder-brand-blue-300 focus:border-brand-blue-900" :title="title" :hidden-name="name" :format="format" :placeholder="title" type="datetime"></datetime>
+            <datetime v-model="date" input-class="form-control" :title="title" :hidden-name="name" :format="format" :placeholder="title" type="datetime"></datetime>
         </span>
     </div>
 

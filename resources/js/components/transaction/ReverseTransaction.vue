@@ -1,32 +1,31 @@
 <template>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="section-panel p-3">
         <div class="pb-0" v-if="loaded">
-            <div class="alert alert-validation" v-if="code.hasErrors()">
-                <i class="fas fa-exclamation-triangle mr-2"></i> {{ code.getErrorMessage() }}
+            <div class="error-alert" v-if="code.hasErrors()">
+                <p class="align-middle font-bold text-base">
+                    <i class="material-icons text-sm">error</i> {{ code.getErrorMessage() }}
+                </p>
+                <ul class="text-sm mt-2" v-if="code.error.errors">
+                    <li v-for="error in code.error.errors">{{ error[0] }}</li>
+                </ul>
             </div>
 
+            <p class="mb-4 px-2 text-sm text-gray-500">
+                Reverse a transaction made against this code (not all transaction types can be reversed).
+            </p>
+
             <div class="form-group">
-                <label for="transaction_reference">Transaction Reference</label>
+                <label class="form-label" for="transaction_reference">Transaction Reference</label>
+                <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('transaction_reference') }" id="transaction_reference" placeholder="Transaction Reference" autocomplete="off" required autofocus v-model="code.data.transaction_reference">
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" :class="{ 'is-invalid': code.hasError('transaction_reference') }"><i class="fas fa-asterisk"></i></label>
-                    </div>
-                    <input type="text" class="form-control" :class="{ 'is-invalid': code.hasError('transaction_reference') }" id="transaction_reference" placeholder="Transaction Reference" autocomplete="off" required autofocus v-model="code.data.transaction_reference">
-                </div>
-
-                <small id="transaction_reference_help" class="form-text text-muted">
+                <small id="transaction_reference_help" class="text-muted">
                     The transaction reference that should be reversed.
                 </small>
-
-                <span v-if="code.hasError('transaction_reference')" class="alert alert-validation-form-field">
-                    {{ code.getError('transaction_reference') }}
-                </span>
             </div>
 
             <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Reverse Transaction</button>
+            <button type="submit" class="brand-btn" @click.prevent="showTransactionConfirmation">Reverse Transaction</button>
         </div>
 
         <Loading message="Loading Reverse Transaction" v-else></Loading>

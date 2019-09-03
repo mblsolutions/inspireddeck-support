@@ -1,13 +1,24 @@
 <template>
-    <div class="mt-3 mb-0 px-3 py-0 pb-3 bg-white rounded shadow-sm">
+    <div class="section-panel p-3">
         <div class="pb-0" v-if="loaded">
-            <div class="alert alert-validation" v-if="code.hasErrors()">
-                <i class="fas fa-exclamation-triangle mr-2"></i> {{ code.getErrorMessage() }}
+            <div class="error-alert" v-if="code.hasErrors()">
+                <p class="align-middle font-bold text-base">
+                    <i class="material-icons text-sm">error</i> {{ code.getErrorMessage() }}
+                </p>
+                <ul class="text-sm mt-2" v-if="code.error.errors">
+                    <li v-for="error in code.error.errors">{{ error[0] }}</li>
+                </ul>
             </div>
+
+            <p class="mb-4 px-2 text-sm text-gray-500">
+                Block code, preventing further transactions.
+            </p>
 
             <Transaction v-model="code.data"></Transaction>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="showTransactionConfirmation">Block Code</button>
+            <div class="form-group">
+                <button type="submit" class="brand-btn" @click.prevent="showTransactionConfirmation">Block Code</button>
+            </div>
         </div>
 
         <Loading message="Loading Credit Code" v-else></Loading>

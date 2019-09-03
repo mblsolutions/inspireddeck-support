@@ -31,7 +31,7 @@
                     <slot name="modal_footer"></slot>
 
                     <button @click.prevent="closeModal" v-if="show_close" class="white-btn hover:bg-brand-blue-100 hover:border-brand-blue-100 mr-2">{{ close_name }}</button>
-                    <button @click.prevent="submitModal" v-if="show_submit" class="brand-btn hover:bg-brand-blue-700">{{ submit_name }}</button>
+                    <button @click.prevent="submitModal" v-if="show_submit" class="brand-btn">{{ submit_name }}</button>
                 </div>
             </div>
         </div>

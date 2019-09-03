@@ -1,11 +1,15 @@
 <template>
-    <div class="media text-muted pt-3">
-        <div class="index-no-results col align-self-center mx-5 my-5 text-center">
-            <i class="fas fa-search-plus"></i>
-            <h4>No Code Selected</h4>
-            <p class="px-5">You must select a code before viewing this page</p>
-            <a href="#" class="btn btn-primary" @click="toggleExpand">Find Code</a>
-        </div>
+    <div class="block w-full text-center py-10">
+        <i class="material-icons text-brand-blue-500 text-6xl my-5">
+            zoom_in
+        </i>
+        <h4 class="text-2xl text-brand-blue-500">
+            No Code Selected
+        </h4>
+        <p class="text-gray-500 text-sm mb-10">
+            You must select a code before viewing this page
+        </p>
+        <a href="#" class="brand-btn" @click="toggleExpand">Find Code</a>
     </div>
 </template>
 
