@@ -35,8 +35,8 @@
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
-    "illuminate/support": "~5.7.0|~5.8.0|~5.9.0",
-    "illuminate/http": "~5.7.0|~5.8.0|~5.9.0",
+    "illuminate/support": "~5.7.0|~5.8.0|^6.0",
+    "illuminate/http": "~5.7.0|~5.8.0|^6.0",
     "mblsolutions/inspireddeck-php-laravel": "dev-master"
   },
   "require-dev": {

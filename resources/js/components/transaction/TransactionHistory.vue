@@ -5,7 +5,7 @@
                 <div v-for="transaction in list">
 
                     <div class="flex px-5 pt-3" :class="{ 'pb-3 border-b-4 border-brand-blue-100': !transaction.comment }">
-                        <div class="relative flex-shrink-0 rounded-full h-14 w-14 flex items-center justify-center bg-brand-blue-200">
+                        <div class="relative flex-shrink-0 rounded-full h-14 w-14 flex items-center justify-center bg-brand-blue-400">
                             <i class="material-icons material-section-icon" v-if="transaction.reversed">history</i>
                             <i class="material-icons material-section-icon" v-else>
                                 {{ transactionIcon(transaction.action) }}
