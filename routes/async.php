@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('async.')->group(static function () {
 
+    Route::get('metrics/dashboard', 'Metric\DashboardController@index')->name('code.balance');
+
     Route::post('code/balance', 'Code\BalanceController@code')->name('code.balance');
 
     Route::post('code/issue', 'Code\IssueController@code')->name('code.issue');
