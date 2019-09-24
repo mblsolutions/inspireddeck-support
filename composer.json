@@ -9,35 +9,12 @@
       "email": "support@mblsolutions.co.uk"
     }
   ],
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../inspireddeck-php",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../inspireddeck-php-laravel",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../inspireddeck-support",
-      "options": {
-        "symlink": true
-      }
-    }
-  ],
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
     "illuminate/support": "~5.7.0|~5.8.0|^6.0",
     "illuminate/http": "~5.7.0|~5.8.0|^6.0",
-    "mblsolutions/inspireddeck-php-laravel": "dev-master"
+    "mblsolutions/inspireddeck-php-laravel": "^1.0"
   },
   "require-dev": {
 
