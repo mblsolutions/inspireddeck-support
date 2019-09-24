@@ -17,7 +17,7 @@
             </div>
         </div>
         <transition name="slide">
-            <div class="absolute w-screen top-32 left-0 right-0 border-t-4 border-brand-blue-900 shadow" v-if="showFindCode">
+            <div class="absolute w-full top-32 left-0 right-0 border-t-4 border-brand-blue-900 shadow" v-if="showFindCode">
                 <div class="p-2 bg-white">
                     <div class="error-alert" v-if="code.hasErrors()">
                         <div class="flex">
