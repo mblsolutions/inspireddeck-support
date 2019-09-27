@@ -54,6 +54,14 @@ class InspiredDeckServiceProvider extends ServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });
+
+        Route::group([
+            'prefix' => 'inspireddeck',
+            'namespace' => '\MBLSolutions\InspiredDeckSupport\Http\Controllers',
+            'middleware' => ['web'],
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        });
     }
 
 }
