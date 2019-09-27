@@ -26,6 +26,10 @@ class InspiredDeckServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/sass' => base_path('resources/sass/inspireddeck'),
         ], 'inspireddeck-sass');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => base_path('resources/views/inspireddeck'),
+        ], 'inspireddeck-views');
     }
 
     /**
