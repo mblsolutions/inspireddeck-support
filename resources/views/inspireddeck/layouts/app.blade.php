@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    @include('helpers.head-meta')
+    @include('inspireddeck.helpers.head-meta')
 
     <script>
         window.INSPIREDDECK = {!! deck_js_object() !!}

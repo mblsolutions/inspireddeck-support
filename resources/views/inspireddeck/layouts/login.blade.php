@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    @include('helpers.head-meta')
+    @include('inspireddeck.helpers.head-meta')
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
