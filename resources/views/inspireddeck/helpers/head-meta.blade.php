@@ -15,6 +15,7 @@
 <meta name="twitter:description" content="{{ config('app.description') }}">
 <meta name="twitter:image" content="{{ config('app.card_image') }}">
 
+<link rel="shortcut icon" href="{{ secure_asset('inspireddeck/favicon.ico') }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('inspireddeck/apple-touch-icon.png') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('inspireddeck/favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ secure_asset('inspireddeck/favicon-16x16.png') }}">
