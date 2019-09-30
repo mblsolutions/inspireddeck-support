@@ -17,16 +17,22 @@ class InspiredDeckServiceProvider extends ServiceProvider
     {
         $this->loadSupportRoutes();
 
-        // Publish Inspired Deck Support js files
+        // Publish Inspired Deck support assets
+        $this->publishes([
+            __DIR__.'/../public/inspireddeck' => base_path('public/inspireddeck'),
+        ], 'inspireddeck-assets');
+
+        // Publish Inspired Deck support js files
         $this->publishes([
             __DIR__.'/../resources/js' => base_path('resources/js/inspireddeck'),
         ], 'inspireddeck-js');
 
-        // Publish Inspired Deck Support sass files
+        // Publish Inspired Deck support sass files
         $this->publishes([
             __DIR__.'/../resources/sass' => base_path('resources/sass/inspireddeck'),
         ], 'inspireddeck-sass');
 
+        // Publish Inspired Deck support views
         $this->publishes([
             __DIR__.'/../resources/views/inspireddeck' => base_path('resources/views/inspireddeck'),
         ], 'inspireddeck-views');
