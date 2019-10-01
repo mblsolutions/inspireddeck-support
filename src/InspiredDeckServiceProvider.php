@@ -35,6 +35,7 @@ class InspiredDeckServiceProvider extends ServiceProvider
         // Publish Inspired Deck support views
         $this->publishes([
             __DIR__.'/../resources/views/inspireddeck' => base_path('resources/views/inspireddeck'),
+            __DIR__.'/../resources/views/errors' => base_path('resources/views/errors'),
         ], 'inspireddeck-views');
     }
 
