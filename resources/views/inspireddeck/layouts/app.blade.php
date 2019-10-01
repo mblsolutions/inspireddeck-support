@@ -9,7 +9,7 @@
     </script>
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('inspireddeck/css/vue-datetime.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('inspireddeck/css/vue-datetime.css') }}">
 </head>
 <body class="font-sans subpixel-antialiased bg-gray-200">
 <div id="app">
