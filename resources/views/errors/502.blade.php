@@ -1,4 +1,4 @@
-@extends('layouts.error')
+@extends('inspireddeck.layouts.error')
 
 @section('content')
 
