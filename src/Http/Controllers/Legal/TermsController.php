@@ -7,6 +7,18 @@ use MBLSolutions\InspiredDeckSupport\Http\Controllers\Controller;
 
 class TermsController extends Controller
 {
+    /** @var ApplicationSettings $settings */
+    protected $settings;
+
+    /**
+     * Privacy Policy Controller
+     *
+     * @param ApplicationSettings $settings
+     */
+    public function __construct(ApplicationSettings $settings)
+    {
+        $this->settings = $settings;
+    }
 
     /**
      * View the Terms of Service
@@ -16,7 +28,7 @@ class TermsController extends Controller
     public function index(): array
     {
         return view('inspireddeck-views::legal.terms.index', [
-            'settings' => (new ApplicationSettings)->get()
+            'settings' => $this->settings->get()
         ]);
     }
 

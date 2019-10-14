@@ -7,6 +7,18 @@ use MBLSolutions\InspiredDeckSupport\Http\Controllers\Controller;
 
 class PrivacyController extends Controller
 {
+    /** @var ApplicationSettings $settings */
+    protected $settings;
+
+    /**
+     * Privacy Policy Controller
+     *
+     * @param ApplicationSettings $settings
+     */
+    public function __construct(ApplicationSettings $settings)
+    {
+        $this->settings = $settings;
+    }
 
     /**
      * View the Privacy Policy
@@ -16,7 +28,7 @@ class PrivacyController extends Controller
     public function index(): array
     {
         return view('inspireddeck-views::legal.privacy.index', [
-            'settings' => (new ApplicationSettings)->get()
+            'settings' => $this->settings->get()
         ]);
     }
 
