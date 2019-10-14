@@ -15,6 +15,10 @@
     <div class="section-panel">
         <div class="section-row">
             <h1>Terms of Service</h1>
+
+            <p>
+                {{ $settings['data']['privacy_policy'] }}
+            </p>
         </div>
     </div>
 

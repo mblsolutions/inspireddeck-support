@@ -1,7 +1,8 @@
 <?php
 
-namespace MBLSolutions\InspiredDeckSupport\Http\Controllers\Async\Code;
+namespace MBLSolutions\InspiredDeckSupport\Http\Controllers\Legal;
 
+use MBLSolutions\InspiredDeck\ApplicationSettings;
 use MBLSolutions\InspiredDeckSupport\Http\Controllers\Controller;
 
 class PrivacyController extends Controller
@@ -15,7 +16,7 @@ class PrivacyController extends Controller
     public function index(): array
     {
         return view('inspireddeck-views::legal.privacy.index', [
-            'privacy' => null
+            'settings' => (new ApplicationSettings)->get()
         ]);
     }
 
