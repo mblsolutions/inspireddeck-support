@@ -1,7 +1,7 @@
 @extends('inspireddeck.layouts.app')
 
 @section('sub-navigation')
-    @include('navigation.brand')
+    @include('navigation.dashboard')
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
             <h1>Terms of Service</h1>
 
             <p>
-                {{ $settings['data']['privacy_policy'] }}
+                {!! $settings['data']['terms_of_service'] !!}
             </p>
         </div>
     </div>

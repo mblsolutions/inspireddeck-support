@@ -1,7 +1,7 @@
 @extends('inspireddeck.layouts.app')
 
 @section('sub-navigation')
-    @include('navigation.brand')
+    @include('navigation.dashboard')
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
             <h1>Privacy Policy</h1>
 
             <p>
-                {{ $settings['data']['privacy_policy'] }}
+                {!! $settings['data']['privacy_policy'] !!}
             </p>
         </div>
     </div>
