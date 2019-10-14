@@ -41,11 +41,22 @@
             @yield('transaction-content')
 
             @yield('report-content')
+
+
         </main>
 
         <main role="main" class="mx-4">
             @yield('report-render')
         </main>
+
+        <div class="text-center mt-4 mb-4 text-brand-blue-500 text-xs">
+            <a href="{{ route('privacy') }}" class="inline-block mr-5">Privacy Policy</a>
+            <a href="{{ route('terms') }}" class="inline-block ml-5">Terms of Service</a>
+            <p class="text-gray-500 mt-3">
+                Copyright &copy; {{ date('Y') }} <a href="https://www.mblsolutions.co.uk">MBL Solutions Ltd.</a>
+            </p>
+        </div>
+
     </div>
 
 </div>

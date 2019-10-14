@@ -13,9 +13,7 @@
     ])
 
     <div class="section-panel">
-        <div class="section-row">
-            <h1>Privacy Policy</h1>
-
+        <div class="px-5 py-3 border-b-4 border-brand-blue-100 text-gray-600 text-sm">
             <p>
                 {!! $settings['data']['privacy_policy'] !!}
             </p>
