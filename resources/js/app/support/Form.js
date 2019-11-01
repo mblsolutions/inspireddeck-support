@@ -24,13 +24,19 @@ export class Form {
         let self = this;
 
         return new Promise((resolve, reject) => {
-
             self.error.reset();
+
+            // Copy object so reference is remove from data updates
+            let request_data = Object.assign({}, self.data);
+
+            if (request_data.amount) {
+                request_data.amount = (request_data.amount * 100);
+            }
 
             axios({
                 url: action,
                 method: method,
-                data: self.data,
+                data: request_data,
                 headers: {
                     'Accept': 'application/json'
                 }

@@ -53,7 +53,9 @@ export class Code extends Form {
     issue() {
         let self = this;
 
-        self.data.activation_date = this.convertDateToISO8601(self.data.activation_date);
+        if (self.data.activation_date) {
+            self.data.activation_date = this.convertDateToISO8601(self.data.activation_date);
+        }
 
         return new Promise(resolve => {
             self.request('/async/code/issue', 'post')
@@ -122,6 +124,10 @@ export class Code extends Form {
      */
     transfer() {
         let self = this;
+
+        if (self.data.activation_date) {
+            self.data.activation_date = this.convertDateToISO8601(self.data.activation_date);
+        }
 
         return new Promise(resolve => {
             self.request('/async/code/transfer', 'post')
