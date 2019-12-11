@@ -133,9 +133,11 @@ export class Form {
 
     /**
      * Reset Error
+     *
+     * @return {Error}
      */
     resetError() {
-        this.error = new Error;
+        return new Error;
     }
 
 }

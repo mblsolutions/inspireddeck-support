@@ -15,7 +15,7 @@
                     @close-inspireddeck-model="closeAction" @submit-inspireddeck-modal="confirmAction"
             >
                 <template slot="modal_body">
-                    <p>{{ text }}</p>
+                    <p v-html="text"></p>
                 </template>
             </Modal>
         </transition>
