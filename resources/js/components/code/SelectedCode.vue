@@ -39,6 +39,24 @@
                             </div>
                         </div>
                     </transition>
+
+
+                </div>
+
+                <div class="section-panel p-3 flex text-sm text-gray-500 items-center">
+                    <div class="flex-shrink-0 mr-4">
+                        <i class="material-icons text-brand-blue-500 text-2xl">calendar_today</i>
+                    </div>
+                    <div class="align-self-center w-6/12">
+                        <span class="uppercase text-xs">Activation</span><br>
+                        <span class="text-brand-blue-500 font-bold text-base">{{ activationDate }}</span>
+                        <span class="text-brand-blue-300 font-bold">{{ activationTime }}</span>
+                    </div>
+                    <div class="align-self-center w-6/12 text-right">
+                        <span class="uppercase text-xs">Expiration</span><br>
+                        <span class="text-brand-blue-500 font-bold text-base">{{ expirationDate }}</span>
+                        <span class="text-brand-blue-300 font-bold">{{ expirationTime }}</span>
+                    </div>
                 </div>
 
                 <slot name="header"></slot>
@@ -109,7 +127,47 @@
              * Get the last updated date
              */
             lastUpdated() {
-                return window.moment(this.selectedCode.updated).format("dddd, MMMM Do YYYY, h:mm:ss a")
+                return window.moment(this.selectedCode.updated).format("dddd, MMMM Do YYYY")
+            },
+            /**
+             * Get the codes computed Activation Date
+             */
+            activationDate() {
+                if (this.selectedCode.activation_date) {
+                    return window.moment(this.selectedCode.activation_date).format("MMMM Do YYYY")
+                }
+
+                return 'Not'
+            },
+            /**
+             * Get the codes computed Activation Date
+             */
+            activationTime() {
+                if (this.selectedCode.activation_date) {
+                    return window.moment(this.selectedCode.activation_date).format("h:mm:ss a")
+                }
+
+                return 'Applicable';
+            },
+            /**
+             * Get the codes computed Expiration Date
+             */
+            expirationDate() {
+                if (this.selectedCode.expiration_date) {
+                    return window.moment(this.selectedCode.expiration_date).format("MMMM Do YYYY")
+                }
+
+                return 'Not'
+            },
+            /**
+             * Get the codes computed Expiration Date
+             */
+            expirationTime() {
+                if (this.selectedCode.expiration_date) {
+                    return window.moment(this.selectedCode.expiration_date).format("h:mm:ss a")
+                }
+
+                return 'Applicable';
             },
             /**
              * Check if Code is Invalid
