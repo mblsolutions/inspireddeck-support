@@ -12,7 +12,10 @@
                             <h5 class="uppercase font-bold" :class="{ 'text-brand-error-500': isInvalid, 'text-teal-500': isActive, 'text-brand-blue-500': isInactive }">
                                 {{ selectedCode.status }}
                             </h5>
-                            <p class="text-muted">{{ customer }}</p>
+                            <p class="text-muted" v-if="customer">
+                                <span class="text-brand-blue-300 font-bold">{{ customer.name }}</span>
+                            </p>
+                            <p class="text-muted" v-else>No Customer Data</p>
                         </div>
                         <div class="w-4/12 hidden md:block text-center">
                             <h3>{{ selectedCode.serial }}</h3>
@@ -29,11 +32,28 @@
 
                     <transition name="cardinfoslide">
                         <div class="hidden md:flex py-2 text-brand-blue-300" v-if="show">
-                            <div class="w-3/6 text-left ml-12">
+                            <div class="w-2/6 text-left ml-12">
                                 <h6 class="text-primary mb-0">{{ selectedCode.asset }}</h6>
                                 <p class="text-muted">{{ selectedCode.sku }}</p>
                             </div>
-                            <div class="w-3/6 text-right mr-8">
+                            <div class="w-2/6 text-center">
+                                <div v-if="customer">
+                                    <span class="text-brand-blue-300">Reigistered To: {{ customer.name }}</span><br>
+                                    <span class="text-muted">
+                                        <span class="text-gray-600">Address: </span>
+                                        <span v-if="customer.address_1 || customer.postcode">{{ customer.address_1 }} {{ customer.postcode }}</span>
+                                        <span v-else>Not Supplied</span>
+                                        |
+                                        <span class="text-gray-600">D.O.B: </span>
+                                        <span v-if="customer.date_of_birth">{{ customer.date_of_birth }}</span>
+                                        <span v-else>Not Supplied</span>
+                                    </span>
+                                </div>
+                                <div v-else>
+                                    <span class="text-brand-blue-300">Code Not Registered</span>
+                                </div>
+                            </div>
+                            <div class="w-2/6 text-right mr-8">
                                 <h6 class="text-primary mb-0">Last Updated</h6>
                                 <p class="text-muted">{{ lastUpdated }}</p>
                             </div>
@@ -111,7 +131,13 @@
              * Get Selected Codes Customer Data
              */
             customer() {
-                return 'No Customer Data'
+                let customer = this.code.code.customer;
+
+                if (customer) {
+                    return customer;
+                }
+
+                return false;
             },
             /**
              * Get Selected Code
