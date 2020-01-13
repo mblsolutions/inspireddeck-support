@@ -31,12 +31,12 @@
                         </div>
                         <div class="w-2/6 justify-end text-right">
                             <div class="text-sm text-brand-blue-300 font-bold">
-                               <div :class="{ 'text-teal-400': creditTransaction(transaction), 'text-brand-error-500': debitTransaction(transaction) }">
-                                   <span v-if="transaction.action === 'debit'">-</span>
-                                   <span class="text-lg" :class="{ 'line-through': transaction.reversed }">
+                                <div :class="{ 'text-teal-400': creditTransaction(transaction), 'text-brand-error-500': debitTransaction(transaction) }">
+                                    <span v-if="transaction.action === 'debit'">-</span>
+                                    <span class="text-lg" :class="{ 'line-through': transaction.reversed }">
                                        {{ formatAmount(transaction.amount, transaction.currency_decimals) }}
                                    </span>
-                                   <span class="text-sm" :class="{ 'text-teal-400': creditTransaction(transaction), 'text-brand-error-300': debitTransaction(transaction) }">{{ transaction.currency_code }}</span>
+                                    <span class="text-sm" :class="{ 'text-teal-400': creditTransaction(transaction), 'text-brand-error-300': debitTransaction(transaction) }">{{ transaction.currency_code }}</span>
                                 </div>
                                 <div class="font-light text-sm text-brand-blue-500">
                                     <span v-if="transaction.origin_ref">{{ transaction.origin_ref }}</span>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <infinite-loading @infinite="infiniteHandler">
+                <infinite-loading @infinite="infiniteHandler" v-if="autoload">
                     <div slot="spinner">
                         <div class="media text-muted pt-3">
                             <div class="index-no-results col align-self-center text-center">
@@ -127,6 +127,18 @@
             date_format: {
                 type: String,
                 default: 'MMMM Do YYYY, h:mm:ss a'
+            },
+            autoload: {
+                type: Boolean,
+                required: false,
+                default: true
+            },
+            transactions: {
+                type: Object,
+                required: false,
+                default: function () {
+                    return null;
+                }
             }
         },
         data() {
@@ -236,16 +248,24 @@
             new Promise((resolve) => {
                 vm.code = new Code(vm.serial ? vm.serial : vm.$root.deck.serial);
 
-                vm.code.loadMoreTransactions(vm.page).then(data => {
-                    let response = data.data;
+                if (vm.autoload) {
+                    vm.code.loadMoreTransactions(vm.page).then(data => {
+                        let response = data.data;
 
-                    if (response.data.length) {
-                        vm.page += 1;
-                        vm.list.push(...response.data);
-                    }
+                        if (response.data.length) {
+                            vm.page += 1;
+                            vm.list.push(...response.data);
+                        }
+
+                        resolve(true);
+                    });
+                } else {
+                    vm.list.push(...vm.transactions.data);
 
                     resolve(true);
-                });
+                    // LOAD SUPPLIED TRANSACTIONS
+                }
+
             }).then(result => {
                 vm.loaded = result;
             });
