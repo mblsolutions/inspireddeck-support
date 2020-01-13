@@ -263,7 +263,6 @@
                     vm.list.push(...vm.transactions.data);
 
                     resolve(true);
-                    // LOAD SUPPLIED TRANSACTIONS
                 }
 
             }).then(result => {
