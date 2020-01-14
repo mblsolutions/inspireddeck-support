@@ -3,11 +3,13 @@
 namespace MBLSolutions\InspiredDeckSupport\Repositories;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use MBLSolutions\InspiredDeck\Balance;
 use MBLSolutions\InspiredDeck\Issue;
 use MBLSolutions\InspiredDeck\Credit;
 use MBLSolutions\InspiredDeck\Debit;
 use MBLSolutions\InspiredDeck\Block;
+use MBLSolutions\InspiredDeck\Search;
 use MBLSolutions\InspiredDeck\Transfer;
 use MBLSolutions\InspiredDeckSupport\Product\Code;
 
@@ -109,13 +111,19 @@ class CodeRepository extends UserCacheRepository
      * Search Controller
      *
      * @param Request $request
-     * @return Code
+     * @return Code|Collection
      */
-    public function search(Request $request): Code
+    public function search(Request $request)
     {
-        $code = $this->model()->search($request->toArray());
+        $result = (new Search())->code($request->toArray());
 
-        return $this->setSelectedCode($code);
+        if (isset($result['meta'])) {
+            $this->resetSelectedCode();
+
+            return collect($result);
+        }
+
+        return $this->setSelectedCode($result);
     }
 
     /**
@@ -146,6 +154,16 @@ class CodeRepository extends UserCacheRepository
         $this->put('selected_code', $code->toJson());
 
         return $code;
+    }
+
+    /**
+     * Reset the Selected Code Information
+     *
+     * @return void
+     */
+    private function resetSelectedCode(): void
+    {
+        $this->put('selected_code', null);
     }
 
     /**

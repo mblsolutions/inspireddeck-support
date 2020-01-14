@@ -23,8 +23,12 @@ export class FindCode extends Form {
             self.request('/async/code/search', 'post')
                 .then(response => {
                     self.selected = response.data.data;
-                    resolve(self.selected);
-                });
+                    resolve(true);
+                }).catch(error => {
+                if (error.response.status === 307) {
+                    window.location.href = error.response.headers.redirect;
+                }
+            });
         });
 
     }

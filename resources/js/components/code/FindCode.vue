@@ -56,7 +56,7 @@
                     <div class="md:flex">
                         <div class="form-group w-full md:w-1/2">
                             <label class="form-label">Find by Customer</label>
-                            <input type="text" class="block w-full relative h-12 flex-shrink flex-grow flex-auto px-3 flex-1 border-b-4 border-gray-400 rounded-l-none bg-gray-100 outline-none text-gray-900 leading-normal cursor-not-allowed" :class="{ 'form-control-error focus:border-brand-error-200': code.hasError('customer') }" placeholder="Find by Customer" v-model="code.data.customer" autocomplete="off">
+                            <input type="text" class="form-control" :class="{ 'form-control-error focus:border-brand-error-200': code.hasError('customer') }" placeholder="Find by Customer" v-model="code.data.customer" autocomplete="off">
                         </div>
                         <div class="form-group w-full md:w-1/2">
                             <label class="form-label">Find by Reference</label>
@@ -136,10 +136,12 @@
             search() {
                 let vm = this;
 
-                vm.code.search().then(response => {
+                vm.code.search().then(redirect => {
                     vm.toggleExpand();
-                }).then(response => {
-                    window.location.href = vm.redirect;
+
+                    if (redirect) {
+                        window.location.href = vm.redirect;
+                    }
                 });
             }
         },
