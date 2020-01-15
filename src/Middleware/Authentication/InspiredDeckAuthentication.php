@@ -38,4 +38,4 @@ class InspiredDeckAuthentication
         return $next($request);
     }
 
-}}
+}
