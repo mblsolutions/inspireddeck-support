@@ -65,7 +65,7 @@
                 </div>
             </div>
         @empty
-            @include('helpers.no-results-panel', [
+            @include('inspireddeck.helpers.no-results-panel', [
                 'icon' => 'search',
                 'heading' => 'Looks like there are no search results',
                 'description' => 'Please try again'
