@@ -22,7 +22,7 @@ class SearchController extends Controller
     {
         $results = Cache::get($request->get('ck'));
 
-        return view('inspireddeck.code.search.results', [
+        return view('inspireddeck.search.results', [
             'results' => $results ?? ['data' => []]
         ]);
     }

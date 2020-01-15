@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('inspireddeck.layouts.app')
 
 @section('sub-navigation')
     @include('navigation.transaction')
@@ -6,14 +6,14 @@
 
 @section('content')
 
-    @include('helpers.section-head', [
+    @include('inspireddeck.helpers.section-head', [
         'icon' => 'search',
         'title' => 'Find Code Results',
         'description' => 'Code results for ' . request()->get('customer')
     ])
 
     <div class="section-panel">
-        @include('helpers.form-messages')
+        @include('inspireddeck.helpers.form-messages')
     </div>
 
     <div class="section-panel">
