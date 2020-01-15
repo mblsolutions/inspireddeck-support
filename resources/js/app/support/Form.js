@@ -47,17 +47,22 @@ export class Form {
             }).catch(error => {
                 let response = error.response.data;
 
-                if (response.message === '') {
-                    self.error.addMessage('An Error Occurred');
+                if (error.response.status !== 307) {
+                    if (response.message === '') {
+                        self.error.addMessage('An Error Occurred');
+                    } else {
+                        self.error.addMessage(response.message);
+                    }
+
+                    if (response.errors) {
+                        self.error.addErrors(response.errors);
+                    }
+
+                    reject(response);
                 } else {
-                    self.error.addMessage(response.message);
+                    reject(error);
                 }
 
-                if (response.errors) {
-                    self.error.addErrors(response.errors);
-                }
-
-                reject(response);
             })
         });
     }
@@ -133,11 +138,9 @@ export class Form {
 
     /**
      * Reset Error
-     *
-     * @return {Error}
      */
     resetError() {
-        return new Error;
+        this.error = new Error;
     }
 
 }

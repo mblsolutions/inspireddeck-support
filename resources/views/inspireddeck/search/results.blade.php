@@ -35,7 +35,7 @@
                 </div>
                 <div class="w-4/6 ml-6 pt-1">
                     <h4 class="section-title">
-                        <a href="{{ route('product.code.show', ['code' => $code['serial']]) }}">{{ $code['serial'] }}</a> <span class="font-normal text-gray-500">- {{ $code['display'] }}</span>
+                        <a href="{{ route('inspireddeck.code.search.select', ['serial' => $code['serial']]) }}">{{ $code['serial'] }}</a> <span class="font-normal text-gray-500">- {{ $code['display'] }}</span>
                     </h4>
                     <div class="section-description mt-0">
                         <span class="block text-sm  font-bold -mt-2">
