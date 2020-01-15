@@ -30,7 +30,7 @@ class SearchController extends AsyncController
             Cache::put($cacheKey, $result->toArray(), now()->addHour(1));
 
             return new JsonResponse($result->toArray(), 307, [
-                'Redirect' => route('code.search.result', [
+                'Redirect' => route('inspireddeck.code.search.result', [
                     'ck' => $cacheKey,
                     'customer' => $request->get('customer')
                 ])

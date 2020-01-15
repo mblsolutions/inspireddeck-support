@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="w-2/6 justify-end text-right">
-                    <a href="{{ route('code.search.select', ['serial' => $code['serial']]) }}" class="brand-btn hidden md:inline-block">
+                    <a href="{{ route('inspireddeck.code.search.select', ['serial' => $code['serial']]) }}" class="brand-btn hidden md:inline-block">
                         View Code
                     </a>
                 </div>
