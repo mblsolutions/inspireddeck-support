@@ -22,7 +22,7 @@ class SearchController extends Controller
     {
         $results = Cache::get($request->get('ck'));
 
-        return view('inspireddeck.search.results', [
+        return view('inspireddeck.code.search.results', [
             'results' => $results ?? ['data' => []]
         ]);
     }
@@ -40,7 +40,7 @@ class SearchController extends Controller
             'serial' => $serial
         ]));
 
-        return redirect()->route('inspireddeck.transaction.index');
+        return redirect()->route('transaction.index');
     }
 
 }
