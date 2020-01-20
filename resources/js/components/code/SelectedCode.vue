@@ -38,14 +38,10 @@
                             </div>
                             <div class="w-2/6 text-center">
                                 <div v-if="customer">
-                                    <span class="text-brand-blue-300">Reigistered To: {{ customer.name }}</span><br>
+                                    <span class="text-brand-blue-300 font-normal">{{ customer.name }} ({{ customer.email }})</span><br>
                                     <span class="text-muted">
                                         <span class="text-gray-600">Address: </span>
                                         <span v-if="customer.address_1 || customer.postcode">{{ customer.address_1 }} {{ customer.postcode }}</span>
-                                        <span v-else>Not Supplied</span>
-                                        |
-                                        <span class="text-gray-600">D.O.B: </span>
-                                        <span v-if="customer.date_of_birth">{{ customer.date_of_birth }}</span>
                                         <span v-else>Not Supplied</span>
                                     </span>
                                 </div>

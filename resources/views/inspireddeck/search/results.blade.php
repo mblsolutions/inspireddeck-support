@@ -43,6 +43,9 @@
                                 @if (isset($code['customer']))
                                     <span class="text-brand-blue-300">{{ $code['customer']['name'] }}</span>
                                 @endif
+                                @if(isset($code['customer']['email']))
+                                    <span class="text-brand-gray-300 font-normal">({{ $code['customer']['email'] }})</span>
+                                @endif
                             </span>
                         </span>
                         <span class="block text-sm">
@@ -50,9 +53,11 @@
                                 @if (isset($code['customer']))
                                     <span class="text-gray-600">Address:</span>
 
-                                    @if($code['customer']['address_1'] || $code['customer']['postcode']) {{ $code['customer']['address_1'] }} {{ $code['customer']['postcode'] }} @else Not Supplied @endif |
-                                    <span class="text-gray-600">D.O.B:</span>
-                                    @if($code['customer']['date_of_birth']) {{ $code['customer']['date_of_birth'] }} @else Not Supplied @endif
+                                    @if(isset($code['customer']['address_1'], $code['customer']['postcode']))
+                                        {{ $code['customer']['address_1'] }} {{ $code['customer']['postcode'] }}
+                                    @else
+                                        Not Supplied
+                                    @endif
                                 @endif
                             </span>
                         </span>
