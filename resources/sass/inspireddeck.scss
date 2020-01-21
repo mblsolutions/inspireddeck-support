@@ -324,3 +324,144 @@ code {
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
+
+.markdown-contents {
+  @apply px-5 py-3 text-gray-600 text-sm;
+  p > code {
+    @apply bg-gray-100 shadow text-brand-blue-900;
+  }
+  pre {
+    @apply bg-gray-100 shadow mx-2 mb-4;
+  }
+  pre > code {
+    @apply bg-gray-100 text-xs;
+    .token.keyword {
+      @apply text-brand-blue-600;
+    }
+    .token.delimiter.important {
+      @apply text-brand-blue-900;
+    }
+    .token.function, .token.class-name {
+      @apply text-brand-error-500;
+    }
+    .token.property {
+      @apply text-brand-error-700;
+    }
+    .token.variable {
+      @apply text-brand-info-500;
+    }
+    .token.double-quoted-string.string, .token.single-quoted-string.string {
+      @apply text-green-500;
+    }
+    .token.this {
+      @apply text-brand-blue-300;
+    }
+  }
+  hr {
+    @apply border my-8 border-brand-blue-200;
+  }
+  a {
+    @apply underline text-brand-blue-900;
+  }
+  h1,h2,h3,h4,h5 {
+    @apply mb-4 font-bold text-brand-gray-1000;
+  }
+
+  h1 {
+    @apply text-2xl font-normal;
+  }
+
+  h1 > a {
+    @apply no-underline text-gray-900;
+  }
+
+  h1 > a:before {
+    content: "+";
+    @apply text-brand-blue-600 text-3xl mr-2 font-bold no-underline;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h2 > a {
+    @apply no-underline text-gray-900;
+  }
+
+  h2 > a:before {
+    content: "+";
+    @apply text-brand-blue-600 text-2xl mr-2 no-underline;
+  }
+
+  h3 {
+    @apply text-lg font-normal;
+  }
+
+  h4 {
+    @apply text-base;
+  }
+
+  h5 {
+    @apply text-sm;
+  }
+
+  h6 {
+    @apply font-bold text-transparent text-xs mx-2 uppercase h-14;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  strong {
+    @apply text-gray-700;
+  }
+
+  ul, ol {
+    @apply pl-5 mb-4;
+    li {
+      @apply mb-1;
+    }
+    li::before {
+      content: "+";
+      @apply text-brand-blue-300 mr-2 text-lg;
+    }
+  }
+
+  ul > li > ul, ul > li > ol, ol > li > ol, ol > li > ul {
+    @apply ml-6;
+    li:before {
+      content: "+";
+      @apply text-brand-blue-900 mr-2 text-lg;
+    }
+  }
+
+  table {
+    @apply text-left w-full border-collapse text-gray-800 text-sm mb-4;
+    thead > tr {
+      @apply border-b-2 border-brand-blue-500 text-brand-blue-900 font-bold;
+    }
+    thead > tr > th {
+      @apply p-2;
+    }
+    tbody > tr > td {
+      @apply border-b border-gray-300 py-2 px-2;
+    }
+    tbody > tr:nth-child(odd)  {
+      @apply bg-brand-blue-50;
+    }
+    tbody > tr:hover {
+      @apply bg-brand-blue-100;
+    }
+  }
+
+  blockquote {
+    @apply border pt-4 px-4 mb-4 mx-2 bg-gray-100 text-gray-600 shadow-md text-sm;
+  }
+
+  /* purgecss ignore */
+  img {
+    @apply m-auto;
+  }
+
+}
