@@ -4,9 +4,24 @@ namespace MBLSolutions\InspiredDeckSupport;
 
 use Carbon\Laravel\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use MBLSolutions\InspiredDeckSupport\Services\MarkDownRenderService;
+use ParsedownExtra;
 
 class InspiredDeckServiceProvider extends ServiceProvider
 {
+
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register(): void
+    {
+        $this->app->singleton(MarkDownRenderService::class, static function ($app) {
+            return new MarkDownRenderService(new ParsedownExtra);
+        });
+    }
+
 
     /**
      * Bootstrap any application services.
