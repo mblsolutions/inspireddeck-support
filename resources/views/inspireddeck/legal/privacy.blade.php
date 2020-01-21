@@ -13,10 +13,8 @@
     ])
 
     <div class="section-panel">
-        <div class="px-5 py-3 border-b-4 border-brand-blue-100 text-gray-600 text-sm">
-            <p>
-                {!! $settings['data']['privacy_policy'] !!}
-            </p>
+        <div class="markdown-contents">
+            {!! $contents !!}
         </div>
     </div>
 
