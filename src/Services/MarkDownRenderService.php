@@ -22,10 +22,10 @@ class MarkDownRenderService
     /**
      * Render the Markdown
      *
-     * @param string $content
+     * @param string|null $content
      * @return string
      */
-    public function render(string $content): string
+    public function render(string $content = null): string
     {
         return $this->driver->text($content);
     }
