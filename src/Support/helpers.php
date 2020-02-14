@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use MBLSolutions\InspiredDeckSupport\Product\Code;
 use MBLSolutions\InspiredDeckSupport\Repositories\CodeRepository;
+use MBLSolutions\InspiredDeckSupport\Services\UIAvatarsService;
 
 if (! function_exists('c')) {
     /**
@@ -59,4 +60,18 @@ if (! function_exists('deck_js_object')) {
             'serial' => optional(selected_code())->serial
         ], JSON_FORCE_OBJECT);
     }
+}
+
+if (! function_exists('ui_avatar')) {
+
+    /**
+     * Get the UI Avatar Service
+     *
+     * @return UIAvatarsService
+     */
+    function ui_avatar()
+    {
+        return new UIAvatarsService();
+    }
+
 }
