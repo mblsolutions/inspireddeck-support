@@ -69,7 +69,7 @@ if (! function_exists('ui_avatar')) {
      *
      * @return UIAvatarsService
      */
-    function ui_avatar()
+    function ui_avatar(): UIAvatarsService
     {
         return new UIAvatarsService();
     }
