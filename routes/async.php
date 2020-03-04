@@ -21,6 +21,9 @@ Route::name('async.')->group(static function () {
 
     Route::get('code/transactions/{serial}/{page}', 'Code\TransactionController@history')->name('code.transaction');
 
+    Route::get('bulk/transactions/{page}', 'Bulk\BulkTransaction@index')->name('bulk.transaction');
+
     Route::post('asset-batch/{asset_batch}/export', 'Product\BatchController@export')->name('batch.export');
+
 
 });
