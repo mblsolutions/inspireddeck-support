@@ -19,4 +19,15 @@ class BulkTransactionController extends AsyncController
         return (new BulkTransaction)->all($page, 5);
     }
 
+    /**
+     * Generate Response Export URI
+     *
+     * @param $id
+     * @return array
+     */
+    public function export($id): array
+    {
+        return (new BulkTransaction)->export($id);
+    }
+
 }
