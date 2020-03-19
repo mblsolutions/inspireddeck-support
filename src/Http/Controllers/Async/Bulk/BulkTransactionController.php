@@ -30,4 +30,14 @@ class BulkTransactionController extends AsyncController
         return (new BulkTransaction)->export($id);
     }
 
+    /**
+     * Get Bulk Transaction metrics
+     *
+     * @return array
+     */
+    public function metrics(): array
+    {
+        return (new BulkTransaction)->metrics();
+    }
+
 }
