@@ -6,6 +6,10 @@ Route::name('async.')->group(static function () {
 
     Route::get('metrics/dashboard', 'Metric\DashboardController@index')->name('code.balance');
 
+    Route::get('settings/user', 'Bulk\BulkTransactionController@metrics')->name('bulk.transaction.metrics');
+    Route::post('settings/user', 'Bulk\BulkTransactionController@metrics')->name('bulk.transaction.metrics');
+
+
     Route::post('code/balance', 'Code\BalanceController@code')->name('code.balance');
 
     Route::post('code/issue', 'Code\IssueController@code')->name('code.issue');
@@ -26,6 +30,5 @@ Route::name('async.')->group(static function () {
     Route::get('bulk/transactions/{id}/export', 'Bulk\BulkTransactionController@export')->name('bulk.transaction.export');
 
     Route::post('asset-batch/{asset_batch}/export', 'Product\BatchController@export')->name('batch.export');
-
 
 });
