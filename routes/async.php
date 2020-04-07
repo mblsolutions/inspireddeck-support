@@ -8,7 +8,7 @@ Route::name('async.')->group(static function () {
 
     Route::get('settings/user', 'User\UserSettingsController@show')->name('user.settings.show');
     Route::post('settings/user', 'User\UserSettingsController@update')->name('user.settings.update');
-    
+
     Route::post('code/balance', 'Code\BalanceController@code')->name('code.balance');
 
     Route::post('code/issue', 'Code\IssueController@code')->name('code.issue');

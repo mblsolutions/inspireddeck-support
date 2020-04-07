@@ -24,7 +24,7 @@ class UserSettingsController extends AsyncController
      *
      * @return array
      */
-    public function get(): array
+    public function show(): array
     {
         return $this->settings->get();
     }
