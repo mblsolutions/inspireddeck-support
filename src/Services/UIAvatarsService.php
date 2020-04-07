@@ -18,6 +18,8 @@ class UIAvatarsService
 
     protected $bgColor = '#057BED';
 
+    protected $size = 128;
+
     /** @var string */
     protected $endpoint = 'https://eu.ui-avatars.com/api/';
 
@@ -53,7 +55,8 @@ class UIAvatarsService
             'bold' => $this->bold,
             'font-size' => $this->fontSize,
             'background' => $this->bgColor,
-            'color' => $this->fontColor
+            'color' => $this->fontColor,
+            'size' => $this->size
         ]);
     }
 
