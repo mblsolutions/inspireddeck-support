@@ -17,3 +17,9 @@ Route::name('inspireddeck.')->middleware(InspiredDeckAuthentication::class)->gro
     Route::get('code/search/select/{serial}', 'Search\SearchController@select')->name('code.search.select');
 
 });
+
+Route::name('user.')->middleware(InspiredDeckAuthentication::class)->group(static function () {
+
+    Route::get('/user/settings/edit', 'User\Settings\UserSettingsController@edit')->name('settings.edit');
+
+});
