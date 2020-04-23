@@ -66,13 +66,15 @@
                             <i class="material-icons text-brand-blue-500 text-2xl">calendar_today</i>
                         </div>
                         <div class="align-self-center w-6/12">
-                            <span class="uppercase text-xs">Activation / Valid From</span><br>
+                            <span class="uppercase text-sm font-bold">Activation</span>
+                            <span class="uppercase text-xs"> / Valid From</span><br>
                             <span class="text-brand-blue-500 font-bold text-base">{{ activationDate }}</span>
                             <span class="text-brand-blue-300 font-bold">{{ activationTime }}</span>
 
                         </div>
                         <div class="align-self-center w-6/12 text-right">
-                            <span class="uppercase text-xs">Expiration / Valid To</span><br>
+                            <span class="uppercase text-sm font-bold">Expiration</span>
+                            <span class="uppercase text-xs"> / Valid To</span><br>
                             <span class="text-brand-blue-500 font-bold text-base">{{ expirationDate }}</span>
                             <span class="text-brand-blue-300 font-bold">{{ expirationTime }}</span>
                         </div>
