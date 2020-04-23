@@ -59,20 +59,40 @@
 
                 </div>
 
-                <div class="section-panel p-3 flex text-sm text-gray-500 items-center">
-                    <div class="flex-shrink-0 mr-4">
-                        <i class="material-icons text-brand-blue-500 text-2xl">calendar_today</i>
+                <div class="section-panel p-3 text-sm text-gray-500 items-center border-t-4 border-brand-blue-200 -mb-8">
+
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <i class="material-icons text-brand-blue-500 text-2xl">calendar_today</i>
+                        </div>
+                        <div class="align-self-center w-6/12">
+                            <span class="uppercase text-xs">Activation / Valid From</span><br>
+                            <span class="text-brand-blue-500 font-bold text-base">{{ activationDate }}</span>
+                            <span class="text-brand-blue-300 font-bold">{{ activationTime }}</span>
+
+                        </div>
+                        <div class="align-self-center w-6/12 text-right">
+                            <span class="uppercase text-xs">Expiration / Valid To</span><br>
+                            <span class="text-brand-blue-500 font-bold text-base">{{ expirationDate }}</span>
+                            <span class="text-brand-blue-300 font-bold">{{ expirationTime }}</span>
+                        </div>
                     </div>
-                    <div class="align-self-center w-6/12">
-                        <span class="uppercase text-xs">Activation</span><br>
-                        <span class="text-brand-blue-500 font-bold text-base">{{ activationDate }}</span>
-                        <span class="text-brand-blue-300 font-bold">{{ activationTime }}</span>
+
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <i class="material-icons text-white text-2xl">date_range</i>
+                        </div>
+                        <div class="align-self-center w-6/12 text-xs">
+                            <span class="text-brand-blue-300 ">{{ validFromDate }}</span>
+                            <span class="text-brand-blue-300 ">{{ validFromTime }}</span>
+
+                        </div>
+                        <div class="align-self-center w-6/12 text-xs text-right">
+                            <span class="text-brand-blue-300 ">{{ validToDate }}</span>
+                            <span class="text-brand-blue-300 ">{{ validToTime }}</span>
+                        </div>
                     </div>
-                    <div class="align-self-center w-6/12 text-right">
-                        <span class="uppercase text-xs">Expiration</span><br>
-                        <span class="text-brand-blue-500 font-bold text-base">{{ expirationDate }}</span>
-                        <span class="text-brand-blue-300 font-bold">{{ expirationTime }}</span>
-                    </div>
+
                 </div>
 
                 <slot name="header"></slot>
@@ -187,6 +207,46 @@
             expirationTime() {
                 if (this.selectedCode.expiration_date) {
                     return window.moment(this.selectedCode.expiration_date).format("h:mm:ss a")
+                }
+
+                return 'Applicable';
+            },
+            /**
+             * Get the codes computed Activation Date
+             */
+            validFromDate() {
+                if (this.selectedCode.valid_from) {
+                    return window.moment(this.selectedCode.valid_from).format("MMMM Do YYYY")
+                }
+
+                return 'Not'
+            },
+            /**
+             * Get the codes computed Activation Date
+             */
+            validFromTime() {
+                if (this.selectedCode.valid_from) {
+                    return window.moment(this.selectedCode.valid_from).format("h:mm:ss a")
+                }
+
+                return 'Applicable';
+            },
+            /**
+             * Get the codes computed Expiration Date
+             */
+            validToDate() {
+                if (this.selectedCode.valid_to) {
+                    return window.moment(this.selectedCode.valid_to).format("MMMM Do YYYY")
+                }
+
+                return 'Not'
+            },
+            /**
+             * Get the codes computed Expiration Date
+             */
+            validToTime() {
+                if (this.selectedCode.valid_to) {
+                    return window.moment(this.selectedCode.valid_to).format("h:mm:ss a")
                 }
 
                 return 'Applicable';
