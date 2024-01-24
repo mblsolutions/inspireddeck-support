@@ -10,17 +10,17 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": "^8.2",
     "ext-json": "*",
     "erusev/parsedown-extra": "^0.8.1",
-    "illuminate/support": "^9.0",
-    "illuminate/http": "^9.0",
-    "mblsolutions/inspireddeck-php-laravel": "^1.5|^2.0"
+    "illuminate/support": "^10.0",
+    "illuminate/http": "^10.0",
+    "mblsolutions/inspireddeck-php-laravel": "^2.2"
   },
   "require-dev": {
     "mockery/mockery": "^1.5",
-    "orchestra/testbench": "^7.14",
-    "phpunit/phpunit": "^9.0"
+    "orchestra/testbench": "^8.0",
+    "phpunit/phpunit": "^10.5"
   },
   "autoload": {
     "psr-4": {
