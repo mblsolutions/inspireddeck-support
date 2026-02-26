@@ -25,7 +25,7 @@ class MarkDownRenderService
      * @param string|null $content
      * @return string
      */
-    public function render(string $content = null): string
+    public function render(?string $content = null): string
     {
         return $this->driver->text($content);
     }

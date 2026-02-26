@@ -15,7 +15,7 @@
     "erusev/parsedown-extra": "^0.8.1",
     "illuminate/support": "^12.0",
     "illuminate/http": "^12.0",
-    "mblsolutions/inspireddeck-php-laravel": "^3.0"
+    "mblsolutions/inspireddeck-php-laravel": "^3.0.1"
   },
   "require-dev": {
     "mockery/mockery": "^1.6",
