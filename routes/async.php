@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('async.')->group(static function () {
 
-    Route::get('metrics/dashboard', 'Metric\DashboardController@index')->name('code.balance');
+    Route::get('metrics/dashboard', 'Metric\DashboardController@index')->name('dashboard.index');
 
     Route::get('settings/user', 'User\UserSettingsController@show')->name('user.settings.show');
     Route::patch('settings/user', 'User\UserSettingsController@update')->name('user.settings.update');
