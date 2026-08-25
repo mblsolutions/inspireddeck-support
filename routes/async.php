@@ -19,7 +19,7 @@ Route::name('async.')->group(static function () {
 
     Route::post('code/reverse', 'Transaction\ReverseController@transaction')->name('transaction.reverse');
 
-    Route::get('code/refresh/{serial}', 'Code\RefreshController@code')->name('code.search');
+    Route::get('code/refresh/{serial}', 'Code\RefreshController@code')->name('code.refresh');
     Route::post('code/search', 'Code\SearchController@search')->name('code.search');
 
     Route::get('code/transactions/{serial}/{page}', 'Code\TransactionController@history')->name('code.transaction');
