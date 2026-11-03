@@ -1,4 +1,4 @@
-<div class="mx-auto flex px-3 py-4 bg-brand-blue-500 text-white border-b-4 border-brand-blue-900 rounded shadow">
+<div v-pre class="mx-auto flex px-3 py-4 bg-brand-blue-500 text-white border-b-4 border-brand-blue-900 rounded shadow">
     <div class="flex flex-shrink-0 items-center">
         <i class="material-icons text-4xl">{{ $icon ?? 'turned_in' }}</i>
     </div>

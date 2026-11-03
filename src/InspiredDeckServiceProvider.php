@@ -3,7 +3,11 @@
 namespace MBLSolutions\InspiredDeckSupport;
 
 use Carbon\Laravel\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use MBLSolutions\InspiredDeckSupport\Services\MarkDownRenderService;
 use ParsedownExtra;
 
@@ -30,6 +34,13 @@ class InspiredDeckServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // 5 login tries a minute per email
+        RateLimiter::for('inspireddeck-login', static function (Request $request) {
+            $email = $request->input('email');
+
+            return Limit::perMinute(5)->by(is_string($email) ? Str::transliterate(Str::lower($email)) : '');
+        });
+
         $this->loadSupportRoutes();
 
         // Publish Inspired Deck support assets
