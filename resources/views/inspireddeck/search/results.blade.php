@@ -16,7 +16,7 @@
         @include('inspireddeck.helpers.form-messages')
     </div>
 
-    <div class="section-panel">
+    <div v-pre class="section-panel">
         @forelse ($results['data'] as $code)
 
             <div class="section-row">
