@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function authenticate(AuthenticationRequest $request): RedirectResponse
     {
         try {
-            $this->authentication->login($request->get('email'), $request->get('password'));
+            $this->authentication->login($request->input('email'), $request->input('password'));
 
             return redirect('dashboard');
 
